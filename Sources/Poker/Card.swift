@@ -30,6 +30,11 @@ public enum Suit: String, Codable, CaseIterable, CustomStringConvertible, Sendab
 }
 
 public struct Card: Codable, Sendable {
+    public init(suit: Suit, rank: Rank) {
+        self.suit = suit
+        self.rank = rank
+    }
+
     public let suit: Suit
     public let rank: Rank
 }
