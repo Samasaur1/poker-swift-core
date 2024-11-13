@@ -29,7 +29,7 @@ public enum Suit: String, Codable, CaseIterable, CustomStringConvertible, Sendab
     }
 }
 
-public struct Card: Codable, Sendable {
+public struct Card: Codable, CustomStringConvertible, Sendable {
     public init(suit: Suit, rank: Rank) {
         self.suit = suit
         self.rank = rank
@@ -37,4 +37,8 @@ public struct Card: Codable, Sendable {
 
     public let suit: Suit
     public let rank: Rank
+
+    public var description: String {
+        rank.description + suit.description
+    }
 }

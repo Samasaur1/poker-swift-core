@@ -23,15 +23,17 @@ public struct Event: Codable, Sendable {
 }
 
 public struct RoundStart: Codable, Sendable {
-    public init(playerID: Int, cards: Card...) {
-        self.init(playerID: playerID, cards: cards)
+    public init(playerID: Int, ante: Int, cards: Card...) {
+        self.init(playerID: playerID, ante: ante, cards: cards)
     }
-    public init(playerID: Int, cards: [Card]) {
+    public init(playerID: Int, ante: Int, cards: [Card]) {
         self.playerID = playerID
+        self.ante = ante
         self.cards = cards
     }
 
     public let playerID: Int
+    public let ante: Int
     public let cards: [Card]
 }
 
@@ -46,7 +48,11 @@ public struct Turn: Codable, Sendable {
 }
 
 public struct TurnRequest: Codable, Sendable {
-    public init() {}
+    public init(deficit: Int) {
+        self.deficit = deficit
+    }
+
+    public let deficit: Int
 }
 
 public struct CardReveal: Codable, Sendable {
