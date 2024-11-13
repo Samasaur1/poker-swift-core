@@ -23,28 +23,32 @@ public struct Event: Codable, Sendable {
 }
 
 public struct RoundStart: Codable, Sendable {
-    public init(playerID: Int, ante: Int, cards: Card...) {
-        self.init(playerID: playerID, ante: ante, cards: cards)
+    public init(playerID: Int, numberOfPlayers: Int, ante: Int, cards: Card...) {
+        self.init(playerID: playerID, numberOfPlayers: numberOfPlayers, ante: ante, cards: cards)
     }
-    public init(playerID: Int, ante: Int, cards: [Card]) {
+    public init(playerID: Int, numberOfPlayers: Int, ante: Int, cards: [Card]) {
         self.playerID = playerID
+        self.numberOfPlayers = numberOfPlayers
         self.ante = ante
         self.cards = cards
     }
 
     public let playerID: Int
+    public let numberOfPlayers: Int
     public let ante: Int
     public let cards: [Card]
 }
 
 public struct Turn: Codable, Sendable {
-    public init(playerID: Int, move: Action) {
+    public init(playerID: Int, move: Action, potValue: Int) {
         self.playerID = playerID
         self.move = move
+        self.potValue = potValue
     }
 
     public let playerID: Int
     public let move: Action
+    public let potValue: Int
 }
 
 public struct TurnRequest: Codable, Sendable {
